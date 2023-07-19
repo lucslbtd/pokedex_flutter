@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/screens/login_page.dart';
+
+class OnboardPage extends StatelessWidget {
+  const OnboardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/onboard_image.png'),
+            const SizedBox(height: 16),
+            const Text(
+              'Está pronto para essa aventura?',
+              style: TextStyle(fontSize: 26),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Basta criar uma conta e começar a explorar o mundo pokemon hoje',
+              style: TextStyle(fontSize: 12),
+            ),
+            const SizedBox(height: 24),
+            Material(
+              elevation: 5.0,
+              color: Color.fromARGB(255, 0, 26, 255),
+              borderRadius: BorderRadius.circular(30.0),
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
+                },
+                minWidth: 200.0,
+                height: 42.0,
+                child: const Text(
+                  'Continuar',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Já tenho conta',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color.fromARGB(255, 0, 26, 255),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
