@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/login_page.dart';
+import 'package:pokedex_flutter/screens/Login_01.dart';
 
 class OnboardPage extends StatelessWidget {
   const OnboardPage({super.key});
@@ -44,13 +45,22 @@ class OnboardPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Já tenho conta',
-              style: TextStyle(
-                fontSize: 16,
-                color: Color.fromARGB(255, 0, 26, 255),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Login01()),
+                );
+                print('Texto clicado!');
+              },
+              child: const Text(
+                'Já tenho conta',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 0, 26, 255),
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),
