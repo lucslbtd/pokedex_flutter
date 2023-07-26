@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/screens/onboard_page.dart';
+import 'package:pokedex_flutter/screens/load_login.dart';
 
 class Login01 extends StatelessWidget {
   const Login01({Key? key}) : super(key: key);
@@ -7,11 +9,14 @@ class Login01 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new),
+            icon: const Icon(Icons.arrow_back_ios_new),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const OnboardPage()),
+              );
             }),
-        title: Text('Entrar'),
+        title: const Text('Entrar'),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -19,9 +24,17 @@ class Login01 extends StatelessWidget {
         padding: const EdgeInsets.all(30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 10.0),
+            const Text(
+              'Bem vindo de volta!',
+              style: TextStyle(fontSize: 26),
+            ),
+            const Text(
+              'Preencha os dados',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+            ),
+            const SizedBox(height: 80),
             const TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -62,16 +75,33 @@ class Login01 extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 30.0),
+            const SizedBox(height: 10.0),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Login01()),
+                );
+              },
+              child: const Text(
+                'Esqueceu sua senha?',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 0, 26, 255),
+                ),
+              ),
+            ),
+            const SizedBox(height: 100.0),
             Material(
               elevation: 5.0,
-              color: Color.fromARGB(255, 0, 26, 255),
+              color: const Color.fromARGB(255, 0, 26, 255),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Login01()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoadLoginScreen()),
                   );
                 },
                 minWidth: 200.0,

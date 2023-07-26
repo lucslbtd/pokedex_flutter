@@ -62,7 +62,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 30.0),
             Material(
               elevation: 5.0,
-              color: Color.fromARGB(255, 0, 26, 255),
+              color: const Color.fromARGB(255, 0, 26, 255),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
                 onPressed: () {
