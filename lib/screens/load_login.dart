@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:pokedex_flutter/screens/login_sucesso.dart';
+import 'package:pokedex_flutter/screens/login_success.dart';
 
 // mudar a imagem mostrada
 class LoadLoginScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _LoadLoginScreenState extends State<LoadLoginScreen> {
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const LoginSucesso(),
+          builder: (context) => const LoginSuccess(),
         ),
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/screens/pokedex.dart';
+import 'package:pokedex_flutter/screens/main_page.dart';
 
-class LoginSucesso extends StatelessWidget {
-  const LoginSucesso({super.key});
+class LoginSuccess extends StatelessWidget {
+  const LoginSuccess({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +10,8 @@ class LoginSucesso extends StatelessWidget {
         body: Center(
             child: Column(
       children: [
-        imgLoginSucesso(),
-        textoLoginSucesso(),
+        imgLoginSuccess(),
+        textoLoginSuccess(),
         Material(
           elevation: 5.0,
           color: const Color.fromARGB(255, 0, 26, 255),
@@ -20,7 +20,7 @@ class LoginSucesso extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Pokedex()),
+                MaterialPageRoute(builder: (context) => const MainPage()),
               );
             },
             minWidth: 200.0,
@@ -39,14 +39,14 @@ class LoginSucesso extends StatelessWidget {
   }
 }
 
-Widget imgLoginSucesso() {
+Widget imgLoginSuccess() {
   return Expanded(
     flex: 7,
     child: Image.asset('assets/images/login_sucesso_img.png'),
   );
 }
 
-Widget tituloLoginSucesso() {
+Widget titleLoginSuccess() {
   return Container(
       width: 250,
       color: Colors.white,
@@ -72,11 +72,11 @@ Widget tituloLoginSucesso() {
       ));
 }
 
-Widget textoLoginSucesso() {
+Widget textoLoginSuccess() {
   return Expanded(
       flex: 3,
       child: Column(children: [
-        tituloLoginSucesso(),
+        titleLoginSuccess(),
         const SizedBox(
           height: 20,
         ),
