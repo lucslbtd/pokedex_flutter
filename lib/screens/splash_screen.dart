@@ -1,8 +1,6 @@
 // Arquivo splash_screen.dart
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-import 'package:pokedex_flutter/screens/login_page.dart';
 import 'package:pokedex_flutter/screens/onboard_page.dart';
 
 class SplashScreen extends StatefulWidget {
