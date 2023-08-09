@@ -1,8 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/signup_success.dart';
 
 class UsernamePage extends StatefulWidget {
-  const UsernamePage({Key? key}) : super(key: key);
+  final String email;
+  final String password;
+
+  const UsernamePage({Key? key, required this.email, required this.password})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -10,6 +16,8 @@ class UsernamePage extends StatefulWidget {
 }
 
 class _UsernamePageState extends State<UsernamePage> {
+  final nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,12 +87,28 @@ class _UsernamePageState extends State<UsernamePage> {
               color: const Color.fromRGBO(23, 62, 165, 1),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SignupSuccess()),
-                  );
+                onPressed: () async {
+                  String name = nameController.text;
+                  try {
+                    UserCredential userCredential = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                      email: widget.email,
+                      password: widget.password,
+                    );
+
+                    userCredential.user?.updateDisplayName(name);
+                    // ignore: use_build_context_synchronously
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignupSuccess()),
+                    );
+                  } catch (e) {
+                    if (kDebugMode) {
+                      print('Erro ao criar a conta: $e');
+                    }
+                    // Aqui, você pode mostrar uma mensagem de erro ao usuário
+                  }
                 },
                 minWidth: 200.0,
                 height: 42.0,

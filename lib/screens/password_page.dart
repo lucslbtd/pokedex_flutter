@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/username_page.dart';
 
 class PasswordPage extends StatefulWidget {
-  const PasswordPage({Key? key}) : super(key: key);
+  final String
+      email; // adicione esta linha para receber o email da tela anterior
+
+  const PasswordPage({Key? key, required this.email})
+      : super(key: key); // modifique o construtor para receber o email
 
   @override
   // ignore: library_private_types_in_public_api
@@ -11,6 +15,7 @@ class PasswordPage extends StatefulWidget {
 
 class _PasswordPageState extends State<PasswordPage> {
   bool _obscureText = true;
+  final passwordController = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -64,11 +69,12 @@ class _PasswordPageState extends State<PasswordPage> {
             ),
             const SizedBox(height: 48),
             TextField(
+              controller: passwordController,
               obscureText: _obscureText,
               decoration: InputDecoration(
                 hintText: 'Senha',
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -96,10 +102,11 @@ class _PasswordPageState extends State<PasswordPage> {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const UsernamePage()),
-                  );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UsernamePage(
+                              password: passwordController.text,
+                              email: widget.email)));
                 },
                 minWidth: 200.0,
                 height: 42.0,
