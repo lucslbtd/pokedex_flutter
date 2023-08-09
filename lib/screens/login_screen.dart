@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/onboard_page.dart';
-import 'package:pokedex_flutter/screens/load_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:pokedex_flutter/screens/load_login.dart';
 import 'package:pokedex_flutter/screens/login_success.dart';
 
-class Login01 extends StatefulWidget {
-  const Login01({Key? key}) : super(key: key);
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _Login01State createState() => _Login01State();
+  _SignInPageState createState() => _SignInPageState();
 }
 
-class _Login01State extends State<Login01> {
+class _SignInPageState extends State<SignInPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -137,7 +136,7 @@ class _Login01State extends State<Login01> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Login01()),
+                  MaterialPageRoute(builder: (context) => const SignInPage()),
                 );
               },
               child: const Text(

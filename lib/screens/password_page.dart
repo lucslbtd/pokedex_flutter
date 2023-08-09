@@ -55,14 +55,14 @@ class _PasswordPageState extends State<PasswordPage> {
               'Agora...',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 22,
                 color: Colors.black,
               ),
             ),
             const Text(
               'Crie uma senha',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),

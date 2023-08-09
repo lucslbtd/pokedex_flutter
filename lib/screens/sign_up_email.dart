@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/password_page.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatelessWidget {
+  SignUpPage({Key? key}) : super(key: key);
 
   final emailController = TextEditingController();
 
@@ -38,14 +38,14 @@ class LoginPage extends StatelessWidget {
               'Vamos começar!',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 22,
                 color: Colors.black,
               ),
             ),
             const Text(
               'Qual é o seu e-mail?',
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),

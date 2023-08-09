@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/sign_up_email.dart';
-import 'package:pokedex_flutter/screens/login_01.dart';
+import 'package:pokedex_flutter/screens/login_screen.dart';
 
 class OnboardPage extends StatelessWidget {
   const OnboardPage({super.key});
@@ -19,11 +19,13 @@ class OnboardPage extends StatelessWidget {
             const Text(
               'Está pronto para essa aventura?',
               style: TextStyle(fontFamily: 'Poppins', fontSize: 26),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             const Text(
               'Basta criar uma conta e começar a explorar o mundo Pokémon hoje!',
               style: TextStyle(fontFamily: 'Poppins', fontSize: 14),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
             Material(
@@ -34,7 +36,7 @@ class OnboardPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => SignUpPage()),
                   );
                 },
                 minWidth: 200.0,
@@ -54,7 +56,7 @@ class OnboardPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Login01()),
+                  MaterialPageRoute(builder: (context) => const SignInPage()),
                 );
               },
               child: const Text(

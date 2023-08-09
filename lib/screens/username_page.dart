@@ -47,20 +47,21 @@ class _UsernamePageState extends State<UsernamePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Pra finalizar',
+              'Pra finalizar,',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 22,
                 color: Colors.black,
               ),
             ),
             const Text(
-              'Qual seu nome de usuário?',
+              'Escolha seu nome de usuário.',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 48),
             const TextField(
