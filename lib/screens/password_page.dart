@@ -63,22 +63,28 @@ class _PasswordPageState extends State<PasswordPage> {
               ),
             ),
             const SizedBox(height: 48),
-            const TextField(
-              obscureText: true,
+            TextField(
+              obscureText: _obscureText,
               decoration: InputDecoration(
                 hintText: 'Senha',
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black, width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black, width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
                 ),
               ),
             ),
