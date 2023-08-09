@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/onboard_page.dart';
-import 'package:pokedex_flutter/screens/load_login.dart';
+//import 'package:pokedex_flutter/screens/load_login.dart';
+import 'package:pokedex_flutter/screens/login_success.dart';
 
 class Login01 extends StatelessWidget {
   const Login01({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
             onPressed: () {
@@ -19,7 +22,6 @@ class Login01 extends StatelessWidget {
         title: const Text('Entrar'),
         centerTitle: true,
       ),
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -101,7 +103,7 @@ class Login01 extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const LoadLoginScreen()),
+                        builder: (context) => const LoginSuccess()),
                   );
                 },
                 minWidth: 200.0,

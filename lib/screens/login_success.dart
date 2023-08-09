@@ -7,35 +7,36 @@ class LoginSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         body: Center(
             child: Column(
-      children: [
-        imgLoginSuccess(),
-        textoLoginSuccess(),
-        Material(
-          elevation: 5.0,
-          color: const Color.fromARGB(255, 0, 26, 255),
-          borderRadius: BorderRadius.circular(30.0),
-          child: MaterialButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MainPage()),
-              );
-            },
-            minWidth: 200.0,
-            height: 42.0,
-            child: const Text(
-              'Continuar',
-              style: TextStyle(color: Colors.white),
+          children: [
+            imgLoginSuccess(),
+            textoLoginSuccess(),
+            Material(
+              elevation: 5.0,
+              color: const Color.fromARGB(255, 0, 26, 255),
+              borderRadius: BorderRadius.circular(30.0),
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainPage()),
+                  );
+                },
+                minWidth: 200.0,
+                height: 42.0,
+                child: const Text(
+                  'Continuar',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        )
-      ],
-    )));
+            const SizedBox(
+              height: 10,
+            )
+          ],
+        )));
   }
 }
 
