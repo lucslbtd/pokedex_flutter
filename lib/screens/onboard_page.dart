@@ -28,7 +28,7 @@ class OnboardPage extends StatelessWidget {
             const SizedBox(height: 24),
             Material(
               elevation: 5.0,
-              color: const Color.fromARGB(255, 0, 26, 255),
+              color: const Color.fromRGBO(23, 62, 165, 1),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
                 onPressed: () {
@@ -60,7 +60,7 @@ class OnboardPage extends StatelessWidget {
                 'Já tenho uma conta',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 0, 26, 255),
+                  color: Color.fromRGBO(23, 62, 165, 1),
                 ),
               ),
             )

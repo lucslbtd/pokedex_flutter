@@ -19,7 +19,14 @@ class Login01 extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const OnboardPage()),
               );
             }),
-        title: const Text('Entrar'),
+        title: const Text(
+          'Entrar',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -30,11 +37,11 @@ class Login01 extends StatelessWidget {
           children: <Widget>[
             const Text(
               'Bem vindo de volta!',
-              style: TextStyle(fontSize: 26),
+              style: TextStyle(fontFamily: 'Poppins',fontSize: 24),
             ),
             const Text(
               'Preencha os dados',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+              style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: 26),
             ),
             const SizedBox(height: 80),
             const TextField(
@@ -88,15 +95,17 @@ class Login01 extends StatelessWidget {
               child: const Text(
                 'Esqueceu sua senha?',
                 style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
-                  color: Color.fromARGB(255, 0, 26, 255),
+                  color: Color.fromRGBO(23, 62, 165, 1),
                 ),
               ),
             ),
             const SizedBox(height: 100.0),
             Material(
               elevation: 5.0,
-              color: const Color.fromARGB(255, 0, 26, 255),
+              color: const Color.fromRGBO(23, 62, 165, 1),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
                 onPressed: () {
@@ -110,7 +119,7 @@ class Login01 extends StatelessWidget {
                 height: 42.0,
                 child: const Text(
                   'Entrar',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w600, color: Colors.white),
                 ),
               ),
             ),

@@ -15,7 +15,7 @@ class SignupSuccess extends StatelessWidget {
             textSignupSuccess(),
             Material(
               elevation: 5.0,
-              color: const Color.fromARGB(255, 0, 26, 255),
+              color: const Color.fromRGBO(23, 62, 165, 1),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
                 onPressed: () {
