@@ -28,7 +28,11 @@ class InfoSecondPage extends StatelessWidget {
                 height: 42.0,
                 child: const Text(
                   'Continuar',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
@@ -57,8 +61,9 @@ Widget titleInfoSecondPage() {
         Text(
           'Mantenha sua Pokédex atualizada',
           style: TextStyle(
+            fontFamily: 'Poppins',
             decoration: TextDecoration.none,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             fontSize: 26,
             color: Colors.black,
           ),
@@ -85,6 +90,11 @@ Widget textInfoSecondPage() {
             width: 300,
             child: Text(
               'Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.',
+              style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                    fontSize: 12,
+                  ),
               textAlign: TextAlign.center, // Set text alignment to center
             ),
           ),

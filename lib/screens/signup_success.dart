@@ -28,7 +28,11 @@ class SignupSuccess extends StatelessWidget {
                 height: 42.0,
                 child: const Text(
                   'Continuar',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
@@ -52,7 +56,8 @@ Widget titleSignupSuccess() {
     width: 250,
     color: Colors.white,
     child: const Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment:
+          MainAxisAlignment.center, // Align children in the center
       children: [
         Text(
           'Sua conta foi criada com sucesso!',
@@ -69,12 +74,12 @@ Widget titleSignupSuccess() {
   );
 }
 
-
 Widget textSignupSuccess() {
   return Expanded(
     flex: 3,
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment:
+          MainAxisAlignment.center, // Align children in the center
       children: [
         titleSignupSuccess(),
         const SizedBox(

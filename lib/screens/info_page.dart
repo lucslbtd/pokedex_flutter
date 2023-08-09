@@ -21,14 +21,19 @@ class InfoFirstPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const InfoSecondPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const InfoSecondPage()),
                   );
                 },
                 minWidth: 200.0,
                 height: 42.0,
                 child: const Text(
                   'Continuar',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
@@ -52,13 +57,15 @@ Widget titleInfoFirstPage() {
     width: 250,
     color: Colors.white,
     child: const Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment:
+          MainAxisAlignment.center, // Align children in the center
       children: [
         Text(
           'Todos os Pokémons em um só Lugar',
           style: TextStyle(
+            fontFamily: 'Poppins',
             decoration: TextDecoration.none,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             fontSize: 26,
             color: Colors.black,
           ),
@@ -69,12 +76,12 @@ Widget titleInfoFirstPage() {
   );
 }
 
-
 Widget textInfoFirstPage() {
   return Expanded(
     flex: 3,
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment:
+          MainAxisAlignment.center, // Align children in the center
       children: [
         titleInfoFirstPage(),
         const SizedBox(
@@ -85,6 +92,11 @@ Widget textInfoFirstPage() {
             width: 300,
             child: Text(
               'Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo',
+               style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                    fontSize: 12,
+                  ),
               textAlign: TextAlign.center, // Set text alignment to center
             ),
           ),

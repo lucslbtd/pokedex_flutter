@@ -112,7 +112,11 @@ class _PasswordPageState extends State<PasswordPage> {
                 height: 42.0,
                 child: const Text(
                   'Continuar',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
