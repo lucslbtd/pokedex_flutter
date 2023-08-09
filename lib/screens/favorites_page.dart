@@ -18,21 +18,23 @@ class FavoritesPage extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FavoritesText(),
-          ],
+      body: Container(
+        color: Colors.white, // Set background color to white
+        child: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FavoritesText(),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-
 class FavoritesText extends StatelessWidget {
-  const FavoritesText({super.key});
+  const FavoritesText({Key? key});
 
   @override
   Widget build(BuildContext context) {
