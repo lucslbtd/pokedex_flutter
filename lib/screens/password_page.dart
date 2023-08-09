@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/screens/sign_up_password.dart';
+import 'package:pokedex_flutter/screens/username_page.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class PasswordPage extends StatefulWidget {
+  const PasswordPage({Key? key}) : super(key: key);
 
-  final emailController = TextEditingController();
+  @override
+  // ignore: library_private_types_in_public_api
+  _PasswordPageState createState() => _PasswordPageState();
+}
+
+class _PasswordPageState extends State<PasswordPage> {
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,39 +47,44 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Vamos começar!',
+              'Agora...',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 26,
                 color: Colors.black,
               ),
             ),
             const Text(
-              'Qual é o seu e-mail?',
+              'Crie uma senha',
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 48),
-            const TextField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
+            TextField(
+              obscureText: _obscureText,
               decoration: InputDecoration(
-                hintText: 'meuemail@gmail.com',
+                hintText: 'Senha',
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black, width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black, width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
                 ),
               ),
             ),
@@ -81,9 +98,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          PasswordPage(email: emailController.text),
-                    ),
+                        builder: (context) => const UsernamePage()),
                   );
                 },
                 minWidth: 200.0,

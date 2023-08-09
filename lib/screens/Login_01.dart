@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/onboard_page.dart';
 import 'package:pokedex_flutter/screens/load_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:pokedex_flutter/screens/load_login.dart';
+import 'package:pokedex_flutter/screens/login_success.dart';
 
 class Login01 extends StatefulWidget {
   const Login01({Key? key}) : super(key: key);
@@ -25,7 +27,7 @@ class _Login01State extends State<Login01> {
       // ignore: use_build_context_synchronously
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const LoadLoginScreen()),
+        MaterialPageRoute(builder: (context) => const LoginSuccess()),
       );
     } on FirebaseAuthException catch (e) {
       showDialog(
@@ -50,7 +52,9 @@ class _Login01State extends State<Login01> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
             onPressed: () {
@@ -59,10 +63,16 @@ class _Login01State extends State<Login01> {
                 MaterialPageRoute(builder: (context) => const OnboardPage()),
               );
             }),
-        title: const Text('Entrar'),
+        title: const Text(
+          'Entrar',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         centerTitle: true,
       ),
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -71,11 +81,14 @@ class _Login01State extends State<Login01> {
           children: <Widget>[
             const Text(
               'Bem vindo de volta!',
-              style: TextStyle(fontSize: 26),
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 24),
             ),
             const Text(
               'Preencha os dados',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 26),
             ),
             const SizedBox(height: 80),
             TextField(
@@ -130,15 +143,17 @@ class _Login01State extends State<Login01> {
               child: const Text(
                 'Esqueceu sua senha?',
                 style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
-                  color: Color.fromARGB(255, 0, 26, 255),
+                  color: Color.fromRGBO(23, 62, 165, 1),
                 ),
               ),
             ),
             const SizedBox(height: 100.0),
             Material(
               elevation: 5.0,
-              color: const Color.fromARGB(255, 0, 26, 255),
+              color: const Color.fromRGBO(23, 62, 165, 1),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
                 onPressed: loginUser,
@@ -146,7 +161,10 @@ class _Login01State extends State<Login01> {
                 height: 42.0,
                 child: const Text(
                   'Entrar',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white),
                 ),
               ),
             ),

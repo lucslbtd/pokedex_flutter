@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/screens/sign_up_password.dart';
+import 'package:pokedex_flutter/screens/signup_success.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class UsernamePage extends StatefulWidget {
+  const UsernamePage({Key? key}) : super(key: key);
 
-  final emailController = TextEditingController();
+  @override
+  // ignore: library_private_types_in_public_api
+  _UsernamePageState createState() => _UsernamePageState();
+}
 
+class _UsernamePageState extends State<UsernamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,27 +39,25 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Vamos começar!',
+              'Pra finalizar',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 26,
                 color: Colors.black,
               ),
             ),
             const Text(
-              'Qual é o seu e-mail?',
+              'Qual seu nome de usuário?',
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 48),
             const TextField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                hintText: 'meuemail@gmail.com',
+                hintText: 'cronasky',
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -81,9 +83,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          PasswordPage(email: emailController.text),
-                    ),
+                        builder: (context) => const SignupSuccess()),
                   );
                 },
                 minWidth: 200.0,

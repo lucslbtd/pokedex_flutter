@@ -41,16 +41,16 @@ class _PokedexPageState extends State<PokedexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Pokedex"),
-      ),
-      body: PokemonGrid(pokemon: pokemon),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Share',
-        child: const Icon(
-          Icons.share_rounded,
+        title: const Text(
+          "Pokedex",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
+      body: PokemonGrid(pokemon: pokemon),
     );
   }
 }

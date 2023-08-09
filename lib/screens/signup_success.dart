@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/main_page.dart';
 
-class LoginSuccess extends StatelessWidget {
-  const LoginSuccess({super.key});
+class SignupSuccess extends StatelessWidget {
+  const SignupSuccess({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class LoginSuccess extends StatelessWidget {
             child: Column(
           children: [
             imgLoginSuccess(),
-            textoLoginSuccess(),
+            textSignupSuccess(),
             Material(
               elevation: 5.0,
               color: const Color.fromRGBO(23, 62, 165, 1),
@@ -43,43 +43,40 @@ class LoginSuccess extends StatelessWidget {
 Widget imgLoginSuccess() {
   return Expanded(
     flex: 7,
-    child: Image.asset('assets/images/login_sucesso_img.png'),
+    child: Image.asset('assets/images/signup_success.png'),
   );
 }
 
-Widget titleLoginSuccess() {
+Widget titleSignupSuccess() {
   return Container(
-      width: 250,
-      color: Colors.white,
-      child: const Center(
-        child: Column(children: [
-          Text(
-            'Bem vindo de volta,',
-            style: TextStyle(
-                decoration: TextDecoration.none,
-                fontWeight: FontWeight.bold,
-                fontSize: 26,
-                color: Colors.black),
+    width: 250,
+    color: Colors.white,
+    child: const Column(
+      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      children: [
+        Text(
+          'Sua conta foi criada com sucesso!',
+          style: TextStyle(
+            decoration: TextDecoration.none,
+            fontWeight: FontWeight.bold,
+            fontSize: 26,
+            color: Colors.black,
           ),
-          Text(
-            'Treinador!',
-            style: TextStyle(
-                decoration: TextDecoration.none,
-                fontWeight: FontWeight.bold,
-                fontSize: 26,
-                color: Colors.black),
-          ),
-        ]),
-      ));
+          textAlign: TextAlign.center, // Set text alignment to center
+        ),
+      ],
+    ),
+  );
 }
 
-Widget textoLoginSuccess() {
+
+Widget textSignupSuccess() {
   return Expanded(
     flex: 3,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
       children: [
-        titleLoginSuccess(),
+        titleSignupSuccess(),
         const SizedBox(
           height: 20,
         ),
@@ -87,7 +84,7 @@ Widget textoLoginSuccess() {
           child: SizedBox(
             width: 300,
             child: Text(
-              'Esperamos que tenha tido uma longa jornada desde a última vez em que nos visitou.',
+              'Seja bem-vindo, treinador! Estamos animados para acompanhar sua jornada.',
               textAlign: TextAlign.center, // Set text alignment to center
             ),
           ),

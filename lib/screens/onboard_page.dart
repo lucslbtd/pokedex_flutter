@@ -8,6 +8,7 @@ class OnboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -17,17 +18,17 @@ class OnboardPage extends StatelessWidget {
             const SizedBox(height: 16),
             const Text(
               'Está pronto para essa aventura?',
-              style: TextStyle(fontSize: 26),
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 26),
             ),
             const SizedBox(height: 8),
             const Text(
-              'Basta criar uma conta e começar a explorar o mundo pokemon hoje',
-              style: TextStyle(fontSize: 12),
+              'Basta criar uma conta e começar a explorar o mundo Pokémon hoje!',
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 14),
             ),
             const SizedBox(height: 24),
             Material(
               elevation: 5.0,
-              color: const Color.fromARGB(255, 0, 26, 255),
+              color: const Color.fromRGBO(23, 62, 165, 1),
               borderRadius: BorderRadius.circular(30.0),
               child: MaterialButton(
                 onPressed: () {
@@ -39,8 +40,12 @@ class OnboardPage extends StatelessWidget {
                 minWidth: 200.0,
                 height: 42.0,
                 child: const Text(
-                  'Continuar',
-                  style: TextStyle(color: Colors.white),
+                  'Criar conta',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
@@ -53,10 +58,11 @@ class OnboardPage extends StatelessWidget {
                 );
               },
               child: const Text(
-                'Já tenho conta',
+                'Já tenho uma conta',
                 style: TextStyle(
+                  fontFamily: 'Poppins',
                   fontSize: 16,
-                  color: Color.fromARGB(255, 0, 26, 255),
+                  color: Color.fromRGBO(23, 62, 165, 1),
                 ),
               ),
             )
