@@ -22,7 +22,7 @@ class OnboardPage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Basta criar uma conta e começar a explorar o mundo pokemon hoje',
+              'Basta criar uma conta e começar a explorar o mundo Pokémon hoje!',
               style: TextStyle(fontSize: 12),
             ),
             const SizedBox(height: 24),
@@ -40,8 +40,11 @@ class OnboardPage extends StatelessWidget {
                 minWidth: 200.0,
                 height: 42.0,
                 child: const Text(
-                  'Continuar',
-                  style: TextStyle(color: Colors.white),
+                  'Criar conta',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    ),
                 ),
               ),
             ),
@@ -54,7 +57,7 @@ class OnboardPage extends StatelessWidget {
                 );
               },
               child: const Text(
-                'Já tenho conta',
+                'Já tenho uma conta',
                 style: TextStyle(
                   fontSize: 16,
                   color: Color.fromARGB(255, 0, 26, 255),

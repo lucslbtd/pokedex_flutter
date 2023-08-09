@@ -75,18 +75,24 @@ Widget titleLoginSuccess() {
 
 Widget textoLoginSuccess() {
   return Expanded(
-      flex: 3,
-      child: Column(children: [
+    flex: 3,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      children: [
         titleLoginSuccess(),
         const SizedBox(
           height: 20,
         ),
         const Center(
-            child: SizedBox(
-          width: 300,
-          child: Text(
-            'Esperamos que tenha tido uma longa jornada desde a última vez em que nos visitou.',
+          child: SizedBox(
+            width: 300,
+            child: Text(
+              'Esperamos que tenha tido uma longa jornada desde a última vez em que nos visitou.',
+              textAlign: TextAlign.center, // Set text alignment to center
+            ),
           ),
-        ))
-      ]));
+        ),
+      ],
+    ),
+  );
 }
