@@ -25,18 +25,12 @@ class _FavouritesPageState extends State<FavouritesPage> {
       ),
       body: Container(
         color: Colors.white, // Background color for the body
-        child: Center(
+        child: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 16),
-              Image.asset(
-                'assets/no_favorites.png',
-                width: 150,
-                height: 150,
-              ),
-              const SizedBox(height: 16),
-              const Text(
+              SizedBox(height: 16),
+              Text(
                 'Você não favoritou nenhum Pokémon :(',
                 style: TextStyle(
                   fontFamily: 'Poppins',
@@ -46,8 +40,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 8),
-              const Text(
+              SizedBox(height: 8),
+              Text(
                 'Clique no ícone de coração dos seus pokémons favoritos e eles aparecerão aqui.',
                 style: TextStyle(
                   fontFamily: 'Poppins',
