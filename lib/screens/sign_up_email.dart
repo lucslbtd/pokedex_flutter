@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/screens/passowrd_page.dart';
+import 'package:pokedex_flutter/screens/sign_up_password.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
+
+  final emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +43,10 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30.0),
-            const TextField(
+            TextField(
+              controller: emailController,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Email',
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -69,7 +73,9 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const PasswordPage()),
+                      builder: (context) =>
+                          PasswordPage(email: emailController.text),
+                    ),
                   );
                 },
                 minWidth: 200.0,

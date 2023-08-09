@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/screens/name_page.dart';
 
 class PasswordPage extends StatefulWidget {
-  const PasswordPage({Key? key}) : super(key: key);
+  final String
+      email; // adicione esta linha para receber o email da tela anterior
+
+  const PasswordPage({Key? key, required this.email})
+      : super(key: key); // modifique o construtor para receber o email
 
   @override
   // ignore: library_private_types_in_public_api
@@ -10,6 +15,8 @@ class PasswordPage extends StatefulWidget {
 
 class _PasswordPageState extends State<PasswordPage> {
   bool _obscureText = true;
+  final passwordController =
+      TextEditingController(); // controlador para coletar a senha
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -45,6 +52,7 @@ class _PasswordPageState extends State<PasswordPage> {
             ),
             const SizedBox(height: 48),
             TextField(
+              controller: passwordController, // associe o controlador aqui
               obscureText: _obscureText,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -60,7 +68,12 @@ class _PasswordPageState extends State<PasswordPage> {
             const SizedBox(height: 48),
             ElevatedButton(
               onPressed: () {
-                // Adicione a navegação para a próxima tela aqui
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NamePage(
+                            password: passwordController.text,
+                            email: widget.email)));
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

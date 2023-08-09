@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/screens/login_page.dart';
+import 'package:pokedex_flutter/screens/sign_up_email.dart';
 import 'package:pokedex_flutter/screens/login_01.dart';
 
 class OnboardPage extends StatelessWidget {
@@ -33,7 +33,7 @@ class OnboardPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
                 minWidth: 200.0,
