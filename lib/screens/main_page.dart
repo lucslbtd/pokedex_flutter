@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/favourites_page.dart';
-import 'package:pokedex_flutter/screens/pokedex_page.dart';
+import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokedex_page.dart';
 import 'package:pokedex_flutter/screens/profile_page.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
