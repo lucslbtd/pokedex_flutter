@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/screens/favourites_page.dart';
+import 'package:pokedex_flutter/screens/favorites_page.dart';
 import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokedex_page.dart';
 import 'package:pokedex_flutter/screens/profile_page.dart';
 
@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> pages = [
     // Substitua esses Widgets pelos seus conteúdos reais
     const PokedexPage(),
-    const FavouritesPage(),
+    const FavoritesPage(),
     const ProfilePage(),
   ];
 
