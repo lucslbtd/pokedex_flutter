@@ -24,7 +24,7 @@ class OnboardPage extends StatelessWidget {
             const SizedBox(height: 8),
             const Text(
               'Basta criar uma conta e começar a explorar o mundo Pokémon hoje!',
-              style: TextStyle(fontFamily: 'Poppins', fontSize: 14),
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 16),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
