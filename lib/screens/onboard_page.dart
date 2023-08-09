@@ -18,12 +18,12 @@ class OnboardPage extends StatelessWidget {
             const SizedBox(height: 16),
             const Text(
               'Está pronto para essa aventura?',
-              style: TextStyle(fontSize: 26),
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 26),
             ),
             const SizedBox(height: 8),
             const Text(
               'Basta criar uma conta e começar a explorar o mundo Pokémon hoje!',
-              style: TextStyle(fontSize: 12),
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 14),
             ),
             const SizedBox(height: 24),
             Material(
@@ -42,9 +42,10 @@ class OnboardPage extends StatelessWidget {
                 child: const Text(
                   'Criar conta',
                   style: TextStyle(
+                    fontFamily: 'Poppins',
                     color: Colors.white,
                     fontSize: 16,
-                    ),
+                  ),
                 ),
               ),
             ),
@@ -59,6 +60,7 @@ class OnboardPage extends StatelessWidget {
               child: const Text(
                 'Já tenho uma conta',
                 style: TextStyle(
+                  fontFamily: 'Poppins',
                   fontSize: 16,
                   color: Color.fromRGBO(23, 62, 165, 1),
                 ),
