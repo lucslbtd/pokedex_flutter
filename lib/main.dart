@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pokedex',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(23, 62, 165, 1)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(23, 62, 165, 1)),
         useMaterial3: true,
       ),
       home: const SplashScreen(),

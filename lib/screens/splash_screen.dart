@@ -1,7 +1,7 @@
 // Arquivo splash_screen.dart
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:pokedex_flutter/screens/onboard_page.dart';
+import 'package:pokedex_flutter/screens/info_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const OnboardPage(),
+          builder: (context) => const InfoFirstPage(),
         ),
       ),
     );
