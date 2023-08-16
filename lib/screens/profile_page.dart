@@ -8,45 +8,61 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("Perfil"),
+        backgroundColor: Colors.white, 
       ),
-      backgroundColor: const Color(0xfff6f6f6),
+      backgroundColor: Colors.white,
       body: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 400),
           child: ListView(
             children: [
-              _SingleSection(
+              const _SingleSection(
                 title: "Informações da conta",
                 children: [
-                  const _CustomListTile(
-                      title: "Nome",
-                      icon: CupertinoIcons.device_phone_portrait),
-                  _CustomListTile(
-                      title: "Email",
-                      icon: CupertinoIcons.moon,
-                      trailing:
-                          CupertinoSwitch(value: false, onChanged: (value) {})),
-                  const _CustomListTile(
-                      title: "Senha",
-                      icon: CupertinoIcons.cloud_download),
+                  _CustomListTile(title: "Nome"),
+                  _CustomListTile(title: "Email"),
+                  _CustomListTile(title: "Senha"),
                 ],
               ),
               const _SingleSection(
                 title: "Pokédex",
                 children: [
-  
+                  // Add your Pokédex related content here
                 ],
               ),
-               _SingleSection(
+              _SingleSection(
                 title: "Notificações",
                 children: [
-                  _CustomListTile(
-                      title: "Atualizações na pokédex", icon: CupertinoIcons.person_2, trailing:
-                          CupertinoSwitch(value: false, onChanged: (value) {})),
-                  _CustomListTile(
-                      title: "Mundo Pokémon", icon: CupertinoIcons.lock, trailing:
-                          CupertinoSwitch(value: false, onChanged: (value) {})),
+                  _SwitchListTile(
+                    title: "Atualizações na pokédex",
+                    switchValue: false,
+                    onSwitchChanged: (value) {
+                      // Handle switch value change here
+                    },
+                  ),
+                  _SwitchListTile(
+                    title: "Mundo Pokémon",
+                    switchValue: false,
+                    onSwitchChanged: (value) {
+                      // Handle switcswh value change here
+                    },
+                  ),
+                ],
+              ),
+              const _SingleSection(
+                title: "Geral",
+                children: [
+                  _CustomListTile(title: "Versão"),
+                  _CustomListTile(title: "Termos e condições"),
+                  _CustomListTile(title: "Central de ajuda"),
+                  _CustomListTile(title: "Sobre"),
+                ],
+              ),
+              const _SingleSection(
+                title: "Outros",
+                children: [
+                  _CustomListTile(title: "Sair"),
                 ],
               ),
             ],
@@ -59,18 +75,45 @@ class ProfilePage extends StatelessWidget {
 
 class _CustomListTile extends StatelessWidget {
   final String title;
-  final IconData icon;
   final Widget? trailing;
-  const _CustomListTile(
-      {Key? key, required this.title, required this.icon, this.trailing})
+
+  const _CustomListTile({Key? key, required this.title, this.trailing})
       : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final hasForwardIcon = title == "Nome" || title == "Email" || title == "Senha";
+
+    return ListTile(
+      title: Text(title),
+      trailing: hasForwardIcon
+          ? trailing ?? const Icon(CupertinoIcons.forward, size: 18)
+          : trailing,
+      onTap: () {},
+    );
+  }
+}
+
+class _SwitchListTile extends StatelessWidget {
+  final String title;
+  final bool switchValue;
+  final ValueChanged<bool> onSwitchChanged;
+
+  const _SwitchListTile({
+    Key? key,
+    required this.title,
+    required this.switchValue,
+    required this.onSwitchChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(title),
-      leading: Icon(icon),
-      trailing: trailing ?? const Icon(CupertinoIcons.forward, size: 18),
+      trailing: Switch(
+        value: switchValue,
+        onChanged: onSwitchChanged,
+      ),
       onTap: () {},
     );
   }
@@ -96,8 +139,10 @@ class _SingleSection extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title.toUpperCase(),
-            style:
-                Theme.of(context).textTheme.headline3?.copyWith(fontSize: 16),
+            style: Theme.of(context)
+                .textTheme
+                .displaySmall
+                ?.copyWith(fontSize: 16),
           ),
         ),
         Container(
