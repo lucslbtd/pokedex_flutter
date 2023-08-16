@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokemons_details_page.dart';
 
-import '../models/pokemon_screen_data.dart';
 import 'pokemon_card_background.dart';
 import 'pokemon_card_data.dart';
 
@@ -34,13 +34,17 @@ class PokemonCard extends StatelessWidget {
         enableFeedback: true,
         splashColor: Colors.red[50],
         onTap: () => {
-          Navigator.pushNamed(
+          Navigator.push(
             context,
-            "/details",
-            arguments: PokemonScreenData(id, name, image),
+            MaterialPageRoute(
+              builder: (context) =>
+                  PokemonDetailsPage(id: id, name: name, image: image),
+            ),
           )
         },
         child: Container(
+          width: double.infinity, // Ocupar a largura completa
+          height: 120, // Ajuste a altura conforme necessário
           padding: const EdgeInsets.all(7),
           decoration: getContainerDecoration(),
           child: Stack(
