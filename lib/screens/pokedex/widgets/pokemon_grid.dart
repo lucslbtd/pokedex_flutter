@@ -17,13 +17,14 @@ class _PokemonGridState extends State<PokemonGrid> {
     final width = MediaQuery.of(context).size.width;
     final crossAxisCount = 1;
 
+    final aspectRatio = width / 200;
     return GridView.count(
       padding: const EdgeInsets.all(7),
       crossAxisCount: crossAxisCount,
       crossAxisSpacing: 4,
       mainAxisSpacing: 4,
       semanticChildCount: 250,
-      childAspectRatio: 600 / 250,
+      childAspectRatio: aspectRatio,
       physics: const BouncingScrollPhysics(),
       children: widget.pokemon
           .map(
