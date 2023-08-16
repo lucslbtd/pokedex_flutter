@@ -41,6 +41,7 @@ class _PokedexPageState extends State<PokedexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
           "Pokedex",
           style: TextStyle(
@@ -50,6 +51,7 @@ class _PokedexPageState extends State<PokedexPage> {
           ),
         ),
       ),
+      backgroundColor: Colors.white,
       body: PokemonGrid(pokemon: pokemon),
     );
   }

@@ -34,7 +34,7 @@ class FavoritesPage extends StatelessWidget {
 }
 
 class FavoritesText extends StatelessWidget {
-  const FavoritesText({Key? key});
+  const FavoritesText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
