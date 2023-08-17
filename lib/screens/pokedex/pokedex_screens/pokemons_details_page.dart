@@ -38,8 +38,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
             return Text('Erro: ${snapshot.error}');
           } else {
             var types = snapshot.data?['types'] as List;
-            String type =
-                types[0]['type']['name']; // Pegar o primeiro tipo do Pokémon
+            String type = types[0]['type']['name'];
             return Column(
               children: [
                 Image.network(widget.image),
