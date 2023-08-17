@@ -8,6 +8,7 @@ class PokemonGrid extends StatefulWidget {
   const PokemonGrid({Key? key, required this.pokemon}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PokemonGridState createState() => _PokemonGridState();
 }
 
@@ -15,7 +16,7 @@ class _PokemonGridState extends State<PokemonGrid> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final crossAxisCount = 1;
+    const crossAxisCount = 1;
 
     final aspectRatio = width / 200;
     return GridView.count(
