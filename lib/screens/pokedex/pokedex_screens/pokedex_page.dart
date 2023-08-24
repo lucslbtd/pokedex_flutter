@@ -26,6 +26,7 @@ class _PokedexPageState extends State<PokedexPage> {
     setState(() {
       if (query.isEmpty) {
         filteredItems = pokemon;
+        //if type is selected -> filteredItems = pokemon where type = selected type
       } else {
         filteredItems = pokemon
             .where((item) => _calculateSimilarity(item.name, query) >= 0.4)
@@ -77,11 +78,58 @@ class _PokedexPageState extends State<PokedexPage> {
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                  child: Column(children: [
+                CustomExpansionTile(
+                  title: 'Botão 1',
+                  children: ['Item 1', 'Item 2', 'Item 3'],
+                ),
+              ])),
+              Expanded(
+                  child: Column(children: [
+                CustomExpansionTile(
+                  title: 'Botão 2',
+                  children: ['Item A', 'Item B', 'Item C'],
+                ),
+              ])),
+            ],
+          ),
           Expanded(
             child: (filteredItems.isEmpty)
                 ? PokemonGrid(pokemon: pokemon)
                 : PokemonGrid(pokemon: filteredItems),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomExpansionTile extends StatelessWidget {
+  final String title;
+  final List<String> children;
+
+  CustomExpansionTile({required this.title, required this.children});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2.0,
+      margin: EdgeInsets.all(8.0),
+      child: ExpansionTile(
+        title: Text(title),
+        children: [
+          for (var item in children)
+            ListTile(
+              title: Text(item),
+              onTap: () {
+                // Lógica de manipulação do clique em um item da lista aqui
+                print('Clicou em $item');
+              },
+            ),
         ],
       ),
     );
