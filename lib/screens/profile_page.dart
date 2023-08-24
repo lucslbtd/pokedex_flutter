@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pokedex_flutter/screens/onboard_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -9,7 +11,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Perfil"),
-        backgroundColor: Colors.white, 
+        backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
       body: Center(
@@ -77,19 +79,40 @@ class _CustomListTile extends StatelessWidget {
   final String title;
   final Widget? trailing;
 
+  void _signOut(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      // ignore: use_build_context_synchronously
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const OnboardPage()),
+        (Route<dynamic> route) => false,
+      );
+    } catch (e) {
+      // Tratar os erros de logout aqui
+      // ignore: avoid_print
+      print('Erro ao encerrar a sessão: $e');
+    }
+  }
+
   const _CustomListTile({Key? key, required this.title, this.trailing})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final hasForwardIcon = title == "Nome" || title == "Email" || title == "Senha";
+    final hasForwardIcon =
+        title == "Nome" || title == "Email" || title == "Senha";
 
     return ListTile(
       title: Text(title),
       trailing: hasForwardIcon
           ? trailing ?? const Icon(CupertinoIcons.forward, size: 18)
           : trailing,
-      onTap: () {},
+      onTap: () {
+        if (title == "Sair") {
+          _signOut(context);
+        }
+      },
     );
   }
 }
