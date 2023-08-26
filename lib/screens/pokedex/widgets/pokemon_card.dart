@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokemons_details_page.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
+//import '../models/poke_model.dart';
+
+List<PokemonCard> favorites = [];
+
 class PokemonCard extends StatefulWidget {
   final int id;
   final String name;
@@ -17,7 +21,12 @@ class _PokemonCardState extends State<PokemonCard> {
 
   void toggleFavorite() {
     setState(() {
-      isFavorited = !isFavorited;
+      isFavorited ? isFavorited = false : isFavorited = true;
+      isFavorited
+          ? favorites.add(PokemonCard(
+              id: widget.id, name: widget.name, image: widget.image))
+          : favorites.remove(PokemonCard(
+              id: widget.id, name: widget.name, image: widget.image));
     });
   }
 
