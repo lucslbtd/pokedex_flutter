@@ -110,8 +110,28 @@ class CardFavorito extends StatefulWidget {
 class _CardFavoritoState extends State<CardFavorito> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: favorites[0],
+    final width = MediaQuery.of(context).size.width;
+    const crossAxisCount = 1;
+    final aspectRatio = width / 200;
+
+    return Expanded(
+      child: GridView.builder(
+        padding: const EdgeInsets.all(7),
+        itemCount: favorites.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          childAspectRatio: aspectRatio,
+        ),
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          final pokemonCard = favorites[index];
+          return PokemonCard(
+            id: pokemonCard.id,
+            name: pokemonCard.name,
+            image: pokemonCard.image,
+          );
+        },
+      ),
     );
   }
 }
