@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokemons_details_page.dart';
-
+import 'package:provider/provider.dart';
 class PokemonCard extends StatefulWidget {
   final int id;
   final String name;
