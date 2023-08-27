@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokemons_details_page.dart';
+import 'package:provider/provider.dart';
+
+import '../models/favorites_model.dart';
 //import 'package:provider/provider.dart';
 //import '../models/poke_model.dart';
 
@@ -21,6 +24,7 @@ class _PokemonCardState extends State<PokemonCard> {
 
   @override
   Widget build(BuildContext context) {
+    var favoritePokemons = Provider.of<Favorites>(context);
     return Card(
       child: InkWell(
         onTap: () {
@@ -71,23 +75,14 @@ class _PokemonCardState extends State<PokemonCard> {
                   children: [
                     Image.network(widget.image),
                     IconButton(
-                      icon: Icon(
-                        isFavorited ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorited ? Colors.red : Colors.grey,
-                      ),
-                      onPressed: () {
-                        isFavorited ? isFavorited = false : isFavorited = true;
-                        isFavorited
-                            ? favorites.add(PokemonCard(
-                                id: widget.id,
-                                name: widget.name,
-                                image: widget.image))
-                            : favorites.remove(PokemonCard(
-                                id: widget.id,
-                                name: widget.name,
-                                image: widget.image));
-                      },
-                    ),
+                        icon: favoritePokemons.favList.contains(widget)
+                            ? const Icon(Icons.favorite, color: Colors.red)
+                            : const Icon(Icons.favorite_border),
+                        onPressed: () {
+                          !favoritePokemons.favList.contains(widget)
+                              ? favoritePokemons.add(widget)
+                              : favoritePokemons.remove(widget);
+                        }),
                   ],
                 ),
               ),
