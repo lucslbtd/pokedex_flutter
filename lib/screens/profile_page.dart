@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pokedex_flutter/screens/onboard_page.dart';
+import 'package:pokedex_flutter/screens/confirm_password_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -111,6 +112,9 @@ class _CustomListTile extends StatelessWidget {
       onTap: () {
         if (title == "Sair") {
           _signOut(context);
+        }
+        else if (title == "Senha") {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const ConfirmPasswordPage( password: '',)));
         }
       },
     );
