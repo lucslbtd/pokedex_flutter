@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pokedex/widgets/pokemon_card.dart';
 import 'package:provider/provider.dart';
+import '../screens/pokedex/models/favorites_model.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({Key? key}) : super(key: key);
@@ -78,7 +79,8 @@ class FavPageMode extends StatefulWidget {
 class _FavPageModeState extends State<FavPageMode> {
   @override
   Widget build(BuildContext context) {
-    if (favorites.length == 0) {
+    var favoritePokemons = Provider.of<Favorites>(context);
+    if (favoritePokemons.favList.length == 0) {
       return FavoritesText();
     } else {
       return CardFavorito();
@@ -96,25 +98,26 @@ class CardFavorito extends StatefulWidget {
 class _CardFavoritoState extends State<CardFavorito> {
   @override
   Widget build(BuildContext context) {
+    var favoritePokemons = Provider.of<Favorites>(context);
     final width = MediaQuery.of(context).size.width;
     const crossAxisCount = 1;
     final aspectRatio = width / 200;
 
     return Expanded(
-      child: GridView.builder(
-        padding: const EdgeInsets.all(7),
-        itemCount: favorites.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          childAspectRatio: aspectRatio,
-        ),
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          final pokemonCard = favorites[index];
-          return PokemonCard(
-            id: pokemonCard.id,
-            name: pokemonCard.name,
-            image: pokemonCard.image,
+      child: Consumer<Favorites>(
+        builder: (context, value, child) {
+          return GridView.builder(
+            padding: const EdgeInsets.all(7),
+            itemCount: value.favList.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              childAspectRatio: aspectRatio,
+            ),
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              final pokemonCard = favoritePokemons.favList[index];
+              return pokemonCard;
+            },
           );
         },
       ),
