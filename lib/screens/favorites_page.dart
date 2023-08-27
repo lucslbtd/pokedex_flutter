@@ -2,20 +2,6 @@ import 'package:flutter/material.dart';
 import 'pokedex/widgets/pokemon_card.dart';
 import 'package:provider/provider.dart';
 
-class FavoriteProvider extends ChangeNotifier {
-  List<PokemonCard> favorites = [];
-
-  void toggleFavorite(PokemonCard pokemonCard) {
-    bool isFavorited = favorites.contains(pokemonCard);
-    if (isFavorited) {
-      favorites.remove(pokemonCard);
-    } else {
-      favorites.add(pokemonCard);
-    }
-    notifyListeners();
-  }
-}
-
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({Key? key}) : super(key: key);
 

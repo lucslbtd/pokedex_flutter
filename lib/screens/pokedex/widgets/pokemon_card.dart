@@ -19,17 +19,6 @@ class PokemonCard extends StatefulWidget {
 class _PokemonCardState extends State<PokemonCard> {
   bool isFavorited = false;
 
-  void toggleFavorite() {
-    setState(() {
-      isFavorited ? isFavorited = false : isFavorited = true;
-      isFavorited
-          ? favorites.add(PokemonCard(
-              id: widget.id, name: widget.name, image: widget.image))
-          : favorites.remove(PokemonCard(
-              id: widget.id, name: widget.name, image: widget.image));
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -86,7 +75,18 @@ class _PokemonCardState extends State<PokemonCard> {
                         isFavorited ? Icons.favorite : Icons.favorite_border,
                         color: isFavorited ? Colors.red : Colors.grey,
                       ),
-                      onPressed: toggleFavorite,
+                      onPressed: () {
+                        isFavorited ? isFavorited = false : isFavorited = true;
+                        isFavorited
+                            ? favorites.add(PokemonCard(
+                                id: widget.id,
+                                name: widget.name,
+                                image: widget.image))
+                            : favorites.remove(PokemonCard(
+                                id: widget.id,
+                                name: widget.name,
+                                image: widget.image));
+                      },
                     ),
                   ],
                 ),
