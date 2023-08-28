@@ -75,9 +75,7 @@ class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
                   color: const Color.fromRGBO(23, 62, 165, 1),
                   borderRadius: BorderRadius.circular(30.0),
                   child: MaterialButton(
-                    onPressed: () {
-                      // Implement password update logic here
-                    },
+                    onPressed: () {},
                     minWidth: 200.0,
                     height: 42.0,
                     child: const Text(

@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/username_page.dart';
 
 class PasswordPage extends StatefulWidget {
-  final String
-      email; // adicione esta linha para receber o email da tela anterior
+  final String email;
 
-  const PasswordPage({Key? key, required this.email})
-      : super(key: key); // modifique o construtor para receber o email
+  const PasswordPage({Key? key, required this.email}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api

@@ -21,7 +21,8 @@ class InfoSecondPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const OnboardPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const OnboardPage()),
                   );
                 },
                 minWidth: 200.0,
@@ -56,7 +57,7 @@ Widget titleInfoSecondPage() {
     width: 250,
     color: Colors.white,
     child: const Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           'Mantenha sua Pokédex atualizada',
@@ -67,19 +68,18 @@ Widget titleInfoSecondPage() {
             fontSize: 26,
             color: Colors.black,
           ),
-          textAlign: TextAlign.center, // Set text alignment to center
+          textAlign: TextAlign.center,
         ),
       ],
     ),
   );
 }
 
-
 Widget textInfoSecondPage() {
   return Expanded(
     flex: 3,
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         titleInfoSecondPage(),
         const SizedBox(
@@ -91,11 +91,11 @@ Widget textInfoSecondPage() {
             child: Text(
               'Cadastre-se e mantenha seu perfil, pokémon favoritos, configurações e muito mais, salvos no aplicativo, mesmo sem conexão com a internet.',
               style: TextStyle(
-                    fontFamily: 'Poppins',
-                    color: Colors.black,
-                    fontSize: 12,
-                  ),
-              textAlign: TextAlign.center, // Set text alignment to center
+                fontFamily: 'Poppins',
+                color: Colors.black,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

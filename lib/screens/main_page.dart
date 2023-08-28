@@ -12,11 +12,9 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   var cor = Colors.blue;
-  int currentPageIndex = 0; // Índice da página atual
+  int currentPageIndex = 0;
 
-  // Lista de páginas (conteúdos) que você deseja mostrar ao clicar nos ícones
   final List<Widget> pages = [
-    // Substitua esses Widgets pelos seus conteúdos reais
     const PokedexPage(),
     const FavoritesPage(),
     const ProfilePage(),
@@ -25,14 +23,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[
-          currentPageIndex], // Mostra a página atual de acordo com o índice
+      body: pages[currentPageIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPageIndex, // Define o índice da página atual
+        currentIndex: currentPageIndex,
         onTap: (index) {
           setState(() {
-            currentPageIndex =
-                index; // Atualiza o índice da página atual ao clicar
+            currentPageIndex = index;
           });
         },
         items: const <BottomNavigationBarItem>[

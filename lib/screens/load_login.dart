@@ -1,10 +1,8 @@
-// Arquivo splash_screen.dart
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:pokedex_flutter/screens/login_success.dart';
 
-// mudar a imagem mostrada
 class LoadLoginScreen extends StatefulWidget {
   const LoadLoginScreen({super.key});
 

@@ -26,7 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
           MaterialPageRoute(builder: (context) => const MainPage()),
         );
       } else {
-        // Se o usuário não estiver logado, vá para a página de onboard
         Timer(
           const Duration(seconds: 3),
           () => Navigator.pushReplacement(

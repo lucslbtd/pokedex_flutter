@@ -77,7 +77,7 @@ Widget textoLoginSuccess() {
   return Expanded(
     flex: 3,
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         titleLoginSuccess(),
         const SizedBox(
@@ -88,7 +88,7 @@ Widget textoLoginSuccess() {
             width: 300,
             child: Text(
               'Esperamos que tenha tido uma longa jornada desde a última vez em que nos visitou.',
-              textAlign: TextAlign.center, // Set text alignment to center
+              textAlign: TextAlign.center,
             ),
           ),
         ),

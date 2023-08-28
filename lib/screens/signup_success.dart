@@ -56,8 +56,7 @@ Widget titleSignupSuccess() {
     width: 250,
     color: Colors.white,
     child: const Column(
-      mainAxisAlignment:
-          MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           'Sua conta foi criada com sucesso!',
@@ -67,7 +66,7 @@ Widget titleSignupSuccess() {
             fontSize: 26,
             color: Colors.black,
           ),
-          textAlign: TextAlign.center, // Set text alignment to center
+          textAlign: TextAlign.center,
         ),
       ],
     ),
@@ -78,8 +77,7 @@ Widget textSignupSuccess() {
   return Expanded(
     flex: 3,
     child: Column(
-      mainAxisAlignment:
-          MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         titleSignupSuccess(),
         const SizedBox(
@@ -90,7 +88,7 @@ Widget textSignupSuccess() {
             width: 300,
             child: Text(
               'Seja bem-vindo, treinador! Estamos animados para acompanhar sua jornada.',
-              textAlign: TextAlign.center, // Set text alignment to center
+              textAlign: TextAlign.center,
             ),
           ),
         ),

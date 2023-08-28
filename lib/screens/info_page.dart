@@ -57,8 +57,7 @@ Widget titleInfoFirstPage() {
     width: 250,
     color: Colors.white,
     child: const Column(
-      mainAxisAlignment:
-          MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           'Todos os Pokémons em um só Lugar',
@@ -69,7 +68,7 @@ Widget titleInfoFirstPage() {
             fontSize: 26,
             color: Colors.black,
           ),
-          textAlign: TextAlign.center, // Set text alignment to center
+          textAlign: TextAlign.center,
         ),
       ],
     ),
@@ -80,8 +79,7 @@ Widget textInfoFirstPage() {
   return Expanded(
     flex: 3,
     child: Column(
-      mainAxisAlignment:
-          MainAxisAlignment.center, // Align children in the center
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         titleInfoFirstPage(),
         const SizedBox(
@@ -92,12 +90,12 @@ Widget textInfoFirstPage() {
             width: 300,
             child: Text(
               'Acesse uma vasta lista de Pokémon de todas as gerações já feitas pela Nintendo',
-               style: TextStyle(
-                    fontFamily: 'Poppins',
-                    color: Colors.black,
-                    fontSize: 12,
-                  ),
-              textAlign: TextAlign.center, // Set text alignment to center
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                color: Colors.black,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

@@ -22,7 +22,7 @@ class FavoritesPage extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: Container(
-        color: Colors.white, // Set background color to white
+        color: Colors.white,
         child: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

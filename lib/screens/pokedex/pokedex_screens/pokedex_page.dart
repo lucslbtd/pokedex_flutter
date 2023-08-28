@@ -65,8 +65,7 @@ class _PokedexPageState extends State<PokedexPage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              onChanged:
-                  filterItems, // Chama a função de filtro a cada alteração no texto
+              onChanged: filterItems,
               decoration: InputDecoration(
                 labelText: 'Procurar Pokémon...',
                 prefixIcon: Icon(Icons.search),

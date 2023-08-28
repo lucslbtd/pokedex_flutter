@@ -30,9 +30,7 @@ class ProfilePage extends StatelessWidget {
               ),
               const _SingleSection(
                 title: "Pokédex",
-                children: [
-                  // Add your Pokédex related content here
-                ],
+                children: [],
               ),
               _SingleSection(
                 title: "Notificações",
@@ -40,16 +38,12 @@ class ProfilePage extends StatelessWidget {
                   _SwitchListTile(
                     title: "Atualizações na pokédex",
                     switchValue: false,
-                    onSwitchChanged: (value) {
-                      // Handle switch value change here
-                    },
+                    onSwitchChanged: (value) {},
                   ),
                   _SwitchListTile(
                     title: "Mundo Pokémon",
                     switchValue: false,
-                    onSwitchChanged: (value) {
-                      // Handle switcswh value change here
-                    },
+                    onSwitchChanged: (value) {},
                   ),
                 ],
               ),
@@ -90,7 +84,6 @@ class _CustomListTile extends StatelessWidget {
         (Route<dynamic> route) => false,
       );
     } catch (e) {
-      // Tratar os erros de logout aqui
       // ignore: avoid_print
       print('Erro ao encerrar a sessão: $e');
     }
@@ -112,9 +105,13 @@ class _CustomListTile extends StatelessWidget {
       onTap: () {
         if (title == "Sair") {
           _signOut(context);
-        }
-        else if (title == "Senha") {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const ConfirmPasswordPage( password: '',)));
+        } else if (title == "Senha") {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ConfirmPasswordPage(
+                        password: '',
+                      )));
         }
       },
     );

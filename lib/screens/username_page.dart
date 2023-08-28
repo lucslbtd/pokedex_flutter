@@ -108,7 +108,6 @@ class _UsernamePageState extends State<UsernamePage> {
                     if (kDebugMode) {
                       print('Erro ao criar a conta: $e');
                     }
-                    // Aqui, você pode mostrar uma mensagem de erro ao usuário
                   }
                 },
                 minWidth: 200.0,

@@ -13,11 +13,11 @@ class PokemonCardData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start, // Alinhar no topo
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(left: 10), // Espaçamento à esquerda
+            padding: const EdgeInsets.only(left: 10),
             child: Text(
               "${name[0].toUpperCase()}${name.substring(1)}",
               style: const TextStyle(
@@ -28,10 +28,10 @@ class PokemonCardData extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 10), // Espaçamento à direita
+          padding: const EdgeInsets.only(right: 10),
           child: Image.network(
             image,
-            width: 80, // Ajuste a largura da imagem conforme necessário
+            width: 80,
             fit: BoxFit.contain,
           ),
         ),
