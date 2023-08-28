@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pokedex/widgets/pokemon_card.dart';
+import 'package:provider/provider.dart';
+import '../screens/pokedex/models/favorites_model.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({Key? key}) : super(key: key);
@@ -24,7 +27,7 @@ class FavoritesPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FavoritesText(),
+              FavPageMode(),
             ],
           ),
         ),
@@ -62,6 +65,62 @@ class FavoritesText extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ],
+    );
+  }
+}
+
+class FavPageMode extends StatefulWidget {
+  const FavPageMode({super.key});
+
+  @override
+  State<FavPageMode> createState() => _FavPageModeState();
+}
+
+class _FavPageModeState extends State<FavPageMode> {
+  @override
+  Widget build(BuildContext context) {
+    var favoritePokemons = Provider.of<Favorites>(context);
+    if (favoritePokemons.favList.length == 0) {
+      return FavoritesText();
+    } else {
+      return CardFavorito();
+    }
+  }
+}
+
+class CardFavorito extends StatefulWidget {
+  const CardFavorito({super.key});
+
+  @override
+  State<CardFavorito> createState() => _CardFavoritoState();
+}
+
+class _CardFavoritoState extends State<CardFavorito> {
+  @override
+  Widget build(BuildContext context) {
+    var favoritePokemons = Provider.of<Favorites>(context);
+    final width = MediaQuery.of(context).size.width;
+    const crossAxisCount = 1;
+    final aspectRatio = width / 200;
+
+    return Expanded(
+      child: Consumer<Favorites>(
+        builder: (context, value, child) {
+          return GridView.builder(
+            padding: const EdgeInsets.all(7),
+            itemCount: value.favList.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              childAspectRatio: aspectRatio,
+            ),
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              final pokemonCard = favoritePokemons.favList[index];
+              return pokemonCard;
+            },
+          );
+        },
+      ),
     );
   }
 }

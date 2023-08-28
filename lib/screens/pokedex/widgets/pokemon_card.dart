@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokemons_details_page.dart';
+import 'package:provider/provider.dart';
+
+import '../models/favorites_model.dart';
+//import 'package:provider/provider.dart';
+//import '../models/poke_model.dart';
 
 class PokemonCard extends StatefulWidget {
   final int id;
@@ -15,14 +20,10 @@ class PokemonCard extends StatefulWidget {
 class _PokemonCardState extends State<PokemonCard> {
   bool isFavorited = false;
 
-  void toggleFavorite() {
-    setState(() {
-      isFavorited = !isFavorited;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    var favoritePokemons = Provider.of<Favorites>(context);
+
     return Card(
       child: InkWell(
         onTap: () {
@@ -73,12 +74,17 @@ class _PokemonCardState extends State<PokemonCard> {
                   children: [
                     Image.network(widget.image),
                     IconButton(
-                      icon: Icon(
-                        isFavorited ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorited ? Colors.red : Colors.grey,
-                      ),
-                      onPressed: toggleFavorite,
-                    ),
+                        icon: favoritePokemons.favIdList.contains(widget.id)
+                            ? const Icon(Icons.favorite, color: Colors.red)
+                            : const Icon(Icons.favorite_border),
+                        onPressed: () {
+                          !favoritePokemons.favIdList.contains(widget.id)
+                              ? favoritePokemons.addID(widget.id)
+                              : favoritePokemons.removeID(widget.id);
+                          !favoritePokemons.favList.contains(widget)
+                              ? favoritePokemons.add(widget)
+                              : favoritePokemons.remove(widget);
+                        }),
                   ],
                 ),
               ),
