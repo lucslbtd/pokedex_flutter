@@ -27,11 +27,9 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   }
 
   addNote() {
-    TextEditingController controller =
-        TextEditingController(); // Crie um controlador
+    TextEditingController controller = TextEditingController();
     setState(() {
-      listNotes.add(PokemonNote(
-          controller: controller)); // Passe o controlador para PokemonNote
+      listNotes.add(PokemonNote(controller: controller));
     });
   }
 
@@ -68,7 +66,24 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                     shrinkWrap: true,
                     itemCount: listNotes.length,
                     itemBuilder: (context, index) {
-                      return listNotes[index];
+                      return Dismissible(
+                        key: Key(listNotes[index].hashCode.toString()),
+                        onDismissed: (direction) {
+                          setState(() {
+                            listNotes.removeAt(index);
+                          });
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.centerRight,
+                          padding: EdgeInsets.only(right: 16.0),
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        ),
+                        child: listNotes[index],
+                      );
                     },
                   ),
                 ],
@@ -89,7 +104,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
 
 class PokemonNote extends StatefulWidget {
   final TextEditingController controller;
-  const PokemonNote({super.key, required this.controller});
+  const PokemonNote({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<PokemonNote> createState() => _PokemonNoteState();
@@ -102,13 +117,17 @@ class _PokemonNoteState extends State<PokemonNote> {
       child: ExpansionTile(
         title: TextField(
           decoration: InputDecoration(
-              hintText: 'Digite um título', border: InputBorder.none),
+            hintText: 'Digite um título',
+            border: InputBorder.none,
+          ),
         ),
         initiallyExpanded: false,
         children: [
           TextField(
             decoration: InputDecoration(
-                hintText: 'Escreva uma anotação...', border: InputBorder.none),
+              hintText: 'Escreva uma anotação...',
+              border: InputBorder.none,
+            ),
             maxLines: 15,
             keyboardType: TextInputType.multiline,
             controller: widget.controller,
