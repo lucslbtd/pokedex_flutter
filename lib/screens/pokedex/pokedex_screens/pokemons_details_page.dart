@@ -18,14 +18,6 @@ class PokemonDetailsPage extends StatefulWidget {
 class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   late Future<Map<String, dynamic>> pokemonDetails;
 
-  var color = Colors.amber;
-
-  changeColor() {
-    setState(() {
-      color = Colors.blue;
-    });
-  }
-
   addNote() {
     TextEditingController titleController = TextEditingController();
     TextEditingController textController = TextEditingController();
@@ -97,6 +89,10 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                       );
                     },
                   ),
+                  Container(
+                    color: Colors.white,
+                    height: 500,
+                  )
                 ],
               ),
             );
@@ -108,6 +104,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
           addNote();
         },
         child: const Icon(Icons.note_add_outlined),
+        tooltip: 'Adicionar Nota',
       ),
     );
   }
