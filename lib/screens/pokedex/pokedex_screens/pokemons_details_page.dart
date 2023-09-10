@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../API/pokeapi.dart';
 
+List<PokemonNote> listNotes = [];
+
 class PokemonDetailsPage extends StatefulWidget {
   final int id;
   final String name;
@@ -16,8 +18,6 @@ class PokemonDetailsPage extends StatefulWidget {
 class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   late Future<Map<String, dynamic>> pokemonDetails;
 
-  List<PokemonNote> listNotes = [];
-
   var color = Colors.amber;
 
   changeColor() {
@@ -27,8 +27,11 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   }
 
   addNote() {
+    TextEditingController controller =
+        TextEditingController(); // Crie um controlador
     setState(() {
-      listNotes.add(const PokemonNote());
+      listNotes.add(PokemonNote(
+          controller: controller)); // Passe o controlador para PokemonNote
     });
   }
 
@@ -85,7 +88,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
 }
 
 class PokemonNote extends StatefulWidget {
-  const PokemonNote({super.key});
+  final TextEditingController controller;
+  const PokemonNote({super.key, required this.controller});
 
   @override
   State<PokemonNote> createState() => _PokemonNoteState();
@@ -94,11 +98,22 @@ class PokemonNote extends StatefulWidget {
 class _PokemonNoteState extends State<PokemonNote> {
   @override
   Widget build(BuildContext context) {
-    return const Card(
-      color: Colors.black,
-      child: ListTile(
-        title: Text('Card Title'),
-        subtitle: Text('Card Subtitle'),
+    return Card(
+      child: ExpansionTile(
+        title: TextField(
+          decoration: InputDecoration(
+              hintText: 'Digite um título', border: InputBorder.none),
+        ),
+        initiallyExpanded: false,
+        children: [
+          TextField(
+            decoration: InputDecoration(
+                hintText: 'Escreva uma anotação...', border: InputBorder.none),
+            maxLines: 15,
+            keyboardType: TextInputType.multiline,
+            controller: widget.controller,
+          )
+        ],
       ),
     );
   }
