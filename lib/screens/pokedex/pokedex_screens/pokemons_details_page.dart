@@ -10,12 +10,27 @@ class PokemonDetailsPage extends StatefulWidget {
       {required this.id, required this.name, required this.image});
 
   @override
-  // ignore: library_private_types_in_public_api
   _PokemonDetailsPageState createState() => _PokemonDetailsPageState();
 }
 
 class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   late Future<Map<String, dynamic>> pokemonDetails;
+
+  List<PokemonNote> listNotes = [];
+
+  var color = Colors.amber;
+
+  changeColor() {
+    setState(() {
+      color = Colors.blue;
+    });
+  }
+
+  addNote() {
+    setState(() {
+      listNotes.add(const PokemonNote());
+    });
+  }
 
   @override
   void initState() {
@@ -39,16 +54,51 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
           } else {
             var types = snapshot.data?['types'] as List;
             String type = types[0]['type']['name'];
-            return Column(
-              children: [
-                Image.network(widget.image),
-                Text('Nome: ${widget.name}'),
-                Text('ID: ${widget.id}'),
-                Text('Tipo: $type'),
-              ],
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Image.network(widget.image),
+                  Text('Nome: ${widget.name}'),
+                  Text('ID: ${widget.id}'),
+                  Text('Tipo: $type'),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: listNotes.length,
+                    itemBuilder: (context, index) {
+                      return listNotes[index];
+                    },
+                  ),
+                ],
+              ),
             );
           }
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          addNote();
+        },
+        child: const Icon(Icons.note_add_outlined),
+      ),
+    );
+  }
+}
+
+class PokemonNote extends StatefulWidget {
+  const PokemonNote({super.key});
+
+  @override
+  State<PokemonNote> createState() => _PokemonNoteState();
+}
+
+class _PokemonNoteState extends State<PokemonNote> {
+  @override
+  Widget build(BuildContext context) {
+    return const Card(
+      color: Colors.black,
+      child: ListTile(
+        title: Text('Card Title'),
+        subtitle: Text('Card Subtitle'),
       ),
     );
   }
