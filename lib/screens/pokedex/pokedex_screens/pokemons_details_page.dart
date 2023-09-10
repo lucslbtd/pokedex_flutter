@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../API/pokeapi.dart';
 
-// Use um mapa para associar as notas aos Pokémon
 Map<String, List<PokemonNote>> pokemonNotesMap = {};
 
 class PokemonDetailsPage extends StatefulWidget {
@@ -28,14 +27,15 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   }
 
   addNote() {
-    TextEditingController controller = TextEditingController();
+    TextEditingController titleController = TextEditingController();
+    TextEditingController textController = TextEditingController();
     setState(() {
-      // Adicione a nota ao mapa associada ao nome do Pokémon
       if (!pokemonNotesMap.containsKey(widget.name)) {
         pokemonNotesMap[widget.name] = [];
       }
       pokemonNotesMap[widget.name]!.add(PokemonNote(
-        controller: controller,
+        titleController: titleController,
+        textController: textController,
       ));
     });
   }
@@ -114,8 +114,11 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
 }
 
 class PokemonNote extends StatefulWidget {
-  final TextEditingController controller;
-  const PokemonNote({Key? key, required this.controller}) : super(key: key);
+  final TextEditingController titleController;
+  final TextEditingController textController;
+  const PokemonNote(
+      {Key? key, required this.titleController, required this.textController})
+      : super(key: key);
 
   @override
   State<PokemonNote> createState() => _PokemonNoteState();
@@ -131,6 +134,8 @@ class _PokemonNoteState extends State<PokemonNote> {
             hintText: 'Digite um título',
             border: InputBorder.none,
           ),
+          controller:
+              widget.titleController, // Associar o controlador ao título
         ),
         initiallyExpanded: false,
         children: [
@@ -141,7 +146,8 @@ class _PokemonNoteState extends State<PokemonNote> {
             ),
             maxLines: 15,
             keyboardType: TextInputType.multiline,
-            controller: widget.controller,
+            controller:
+                widget.textController, // Associar o controlador ao texto
           )
         ],
       ),
