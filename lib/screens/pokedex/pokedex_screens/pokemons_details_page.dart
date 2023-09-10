@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../API/pokeapi.dart';
 
-List<PokemonNote> listNotes = [];
+// Use um mapa para associar as notas aos Pokémon
+Map<String, List<PokemonNote>> pokemonNotesMap = {};
 
 class PokemonDetailsPage extends StatefulWidget {
   final int id;
@@ -29,7 +30,13 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   addNote() {
     TextEditingController controller = TextEditingController();
     setState(() {
-      listNotes.add(PokemonNote(controller: controller));
+      // Adicione a nota ao mapa associada ao nome do Pokémon
+      if (!pokemonNotesMap.containsKey(widget.name)) {
+        pokemonNotesMap[widget.name] = [];
+      }
+      pokemonNotesMap[widget.name]!.add(PokemonNote(
+        controller: controller,
+      ));
     });
   }
 
@@ -64,13 +71,17 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                   Text('Tipo: $type'),
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount: listNotes.length,
+                    itemCount: pokemonNotesMap.containsKey(widget.name)
+                        ? pokemonNotesMap[widget.name]!.length
+                        : 0,
                     itemBuilder: (context, index) {
                       return Dismissible(
-                        key: Key(listNotes[index].hashCode.toString()),
+                        key: Key(pokemonNotesMap[widget.name]![index]
+                            .hashCode
+                            .toString()),
                         onDismissed: (direction) {
                           setState(() {
-                            listNotes.removeAt(index);
+                            pokemonNotesMap[widget.name]!.removeAt(index);
                           });
                         },
                         background: Container(
@@ -82,7 +93,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                             color: Colors.white,
                           ),
                         ),
-                        child: listNotes[index],
+                        child: pokemonNotesMap[widget.name]![index],
                       );
                     },
                   ),
