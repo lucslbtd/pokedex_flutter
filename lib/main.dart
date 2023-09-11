@@ -17,16 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<Favorites>(
-      create: (context) => Favorites(),
-      child: MaterialApp(
-        title: 'Pokedex',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: const Color.fromRGBO(23, 62, 165, 1)),
-          useMaterial3: true,
-        ),
-        home: const SplashScreen(),
-      ),
-    );
+        create: (context) => Favorites(),
+        child: MaterialApp(
+          title: 'Pokedex',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: const Color.fromRGBO(23, 62, 165, 1)),
+            useMaterial3: true,
+          ),
+          home: const SplashScreen(),
+        ));
   }
 }
