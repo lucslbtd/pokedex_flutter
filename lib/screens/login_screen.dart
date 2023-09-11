@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:pokedex_flutter/screens/load_login.dart';
 import 'package:pokedex_flutter/screens/login_success.dart';
 
+import '../FirebaseService.dart';
+
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
@@ -23,6 +25,7 @@ class _SignInPageState extends State<SignInPage> {
         email: emailController.text,
         password: passwordController.text,
       );
+      FirebaseService.updateFavorites();
       // ignore: use_build_context_synchronously
       Navigator.push(
         context,

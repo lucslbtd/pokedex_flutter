@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/screens/pokedex/pokedex_screens/pokemons_details_page.dart';
 import 'package:provider/provider.dart';
-
+import '../../../FirebaseService.dart';
 import '../models/favorites_model.dart';
 //import 'package:provider/provider.dart';
 //import '../models/poke_model.dart';
@@ -74,17 +74,23 @@ class _PokemonCardState extends State<PokemonCard> {
                   children: [
                     Image.network(widget.image),
                     IconButton(
-                        icon: favoritePokemons.favIdList.contains(widget.id)
-                            ? const Icon(Icons.favorite, color: Colors.red)
-                            : const Icon(Icons.favorite_border),
-                        onPressed: () {
-                          !favoritePokemons.favIdList.contains(widget.id)
-                              ? favoritePokemons.addID(widget.id)
-                              : favoritePokemons.removeID(widget.id);
-                          !favoritePokemons.favList.contains(widget)
-                              ? favoritePokemons.add(widget)
-                              : favoritePokemons.remove(widget);
-                        }),
+                      icon: favoritePokemons.favIdList.contains(widget.id)
+                          ? const Icon(Icons.favorite, color: Colors.red)
+                          : const Icon(Icons.favorite_border),
+                      onPressed: () {
+                        String pokemonName = widget.name;
+
+                        if (!favoritePokemons.favIdList.contains(widget.id)) {
+                          favoritePokemons.addID(widget.id);
+                          favoritePokemons.add(widget);
+                          FirebaseService.addFavoritePokemon(pokemonName);
+                        } else {
+                          favoritePokemons.removeID(widget.id);
+                          favoritePokemons.remove(widget);
+                          FirebaseService.removeFavoritePokemon(pokemonName);
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),

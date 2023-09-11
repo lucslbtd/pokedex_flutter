@@ -11,4 +11,9 @@ class PokeAPI {
         await http.get(Uri.parse("https://pokeapi.co/api/v2/pokemon/$name"));
     return jsonDecode(response.body);
   }
+
+  static Future<List<Map<String, dynamic>>> getPokemonDetailsList(
+      List<String> names) async {
+    return Future.wait(names.map((name) => getPokemonDetails(name)).toList());
+  }
 }
