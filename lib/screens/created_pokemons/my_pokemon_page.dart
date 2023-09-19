@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/screens/created_pokemons/my_poke_editor.dart';
 import 'package:pokedex_flutter/screens/created_pokemons/my_poke_reader.dart';
 
 import 'my_poke_widgets/my_poke_card.dart';
@@ -67,7 +68,10 @@ class _MyPokemonPageState extends State<MyPokemonPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: ((context) => PokeEditorScreen())));
+        },
         label: Text('Criar Pokemon'),
         icon: Icon(Icons.add),
       ),
