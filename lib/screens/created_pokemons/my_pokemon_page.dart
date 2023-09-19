@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'my_poke_widgets/my_poke_card.dart';
+
 class MyPokemonPage extends StatefulWidget {
   const MyPokemonPage({super.key});
 
@@ -30,26 +32,37 @@ class _MyPokemonPageState extends State<MyPokemonPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('MyPokemons')
-                  .snapshots(),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasData) {
-                  return GridView(
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('MyPokemons')
+                    .snapshots(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    return GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2));
-                }
-                return Text('Nenhum pokemon criado...');
-              },
+                          crossAxisCount: 2),
+                      children: snapshot.data!.docs
+                          .map((poke) => mypokeCard(() {}, poke))
+                          .toList(),
+                    );
+                  }
+                  return Text('Nenhum pokemon criado...');
+                },
+              ),
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: Text('Criar Pokemon'),
+        icon: Icon(Icons.add),
       ),
     );
   }
