@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/screens/created_pokemons/my_poke_reader.dart';
 
 import 'my_poke_widgets/my_poke_card.dart';
 
@@ -48,7 +49,13 @@ class _MyPokemonPageState extends State<MyPokemonPage> {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2),
                       children: snapshot.data!.docs
-                          .map((poke) => mypokeCard(() {}, poke))
+                          .map((poke) => mypokeCard(() {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            PokeReaderScreen(poke))));
+                              }, poke))
                           .toList(),
                     );
                   }
