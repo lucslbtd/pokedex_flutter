@@ -9,8 +9,8 @@ class PokeEditorScreen extends StatefulWidget {
 }
 
 class _PokeEditorScreenState extends State<PokeEditorScreen> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _mainController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _typeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +24,13 @@ class _PokeEditorScreenState extends State<PokeEditorScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(children: [
           TextField(
-            controller: _titleController,
+            controller: _nameController,
             maxLength: 15,
             decoration: InputDecoration(
                 border: InputBorder.none, hintText: 'Nomeie o Pokemon'),
           ),
           TextField(
-            controller: _mainController,
+            controller: _typeController,
             decoration:
                 InputDecoration(border: InputBorder.none, hintText: 'Blabla'),
           ),
@@ -39,9 +39,8 @@ class _PokeEditorScreenState extends State<PokeEditorScreen> {
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
             FirebaseFirestore.instance.collection('MyPokemons').add({
-              'name': _titleController.text,
-              'id': '2',
-              'type': _mainController.text,
+              'name': _nameController.text,
+              'type': _typeController.text,
             }).then((value) {
               print(value.id);
               Navigator.pop(context);

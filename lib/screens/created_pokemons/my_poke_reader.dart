@@ -24,7 +24,6 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(widget.doc['name']),
-            Text(widget.doc['id']),
             Text(widget.doc['type']),
           ],
         ),

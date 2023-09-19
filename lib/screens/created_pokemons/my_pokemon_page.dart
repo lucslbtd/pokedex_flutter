@@ -48,7 +48,7 @@ class _MyPokemonPageState extends State<MyPokemonPage> {
                   if (snapshot.hasData) {
                     return GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
+                          crossAxisCount: 1),
                       children: snapshot.data!.docs
                           .map((poke) => mypokeCard(() {
                                 Navigator.push(
