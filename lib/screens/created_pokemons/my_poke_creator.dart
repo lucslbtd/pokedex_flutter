@@ -1,5 +1,6 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter/material.dart";
+import 'package:firebase_auth/firebase_auth.dart';
 
 class PokeEditorScreen extends StatefulWidget {
   const PokeEditorScreen({super.key});
@@ -9,6 +10,7 @@ class PokeEditorScreen extends StatefulWidget {
 }
 
 class _PokeEditorScreenState extends State<PokeEditorScreen> {
+  static User? user = FirebaseAuth.instance.currentUser;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _typeController = TextEditingController();
   @override
@@ -38,14 +40,18 @@ class _PokeEditorScreenState extends State<PokeEditorScreen> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            FirebaseFirestore.instance.collection('MyPokemons').add({
+            FirebaseFirestore.instance
+                .collection('users')
+                .doc(user!.uid)
+                .collection('mypokes')
+                .add({
               'name': _nameController.text,
               'type': _typeController.text,
             }).then((value) {
               print(value.id);
               Navigator.pop(context);
             }).catchError(
-                (error) => print('Falha ao criar o pokemon :( $error'));
+                    (error) => print('Falha ao criar o pokemon :( $error'));
           },
           child: Icon(Icons.save)),
     );

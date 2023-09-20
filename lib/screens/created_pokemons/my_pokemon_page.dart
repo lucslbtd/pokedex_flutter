@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/screens/created_pokemons/my_poke_editor.dart';
+import 'package:pokedex_flutter/screens/created_pokemons/my_poke_creator.dart';
 import 'package:pokedex_flutter/screens/created_pokemons/my_poke_reader.dart';
 
+import '../../FirebaseService.dart';
 import 'my_poke_widgets/my_poke_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MyPokemonPage extends StatefulWidget {
   const MyPokemonPage({super.key});
@@ -13,6 +15,8 @@ class MyPokemonPage extends StatefulWidget {
 }
 
 class _MyPokemonPageState extends State<MyPokemonPage> {
+  static User? user = FirebaseAuth.instance.currentUser;
+  List<String> createdPokemonNames = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +41,9 @@ class _MyPokemonPageState extends State<MyPokemonPage> {
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
-                    .collection('MyPokemons')
+                    .collection('users')
+                    .doc(user!.uid)
+                    .collection('mypokes')
                     .snapshots(),
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

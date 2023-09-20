@@ -52,4 +52,19 @@ class FirebaseService {
           .get();
     }
   }
+
+  static Future<List<String>> getCreatedPokemons() async {
+    List<String> createdPokemons = [];
+    if (user != null) {
+      QuerySnapshot snapshot = await _db
+          .collection('users')
+          .doc(user!.uid)
+          .collection('mypokes')
+          .get();
+      for (var doc in snapshot.docs) {
+        createdPokemons.add(doc.id);
+      }
+    }
+    return createdPokemons;
+  }
 }

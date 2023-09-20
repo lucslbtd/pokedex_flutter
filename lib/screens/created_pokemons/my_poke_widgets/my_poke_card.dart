@@ -11,9 +11,9 @@ Widget mypokeCard(Function()? onTap, QueryDocumentSnapshot doc) {
       trailing: IconButton(
         icon: Icon(Icons.delete),
         onPressed: () {
-          final docUser =
+          final docPoke =
               FirebaseFirestore.instance.collection('MyPokemons').doc(doc.id);
-          docUser.delete();
+          docPoke.delete();
         },
       ),
     ),
