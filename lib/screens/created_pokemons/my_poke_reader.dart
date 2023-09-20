@@ -1,6 +1,9 @@
-import "package:cloud_firestore/cloud_firestore.dart";
-import "package:firebase_auth/firebase_auth.dart";
-import "package:flutter/material.dart";
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class PokeReaderScreen extends StatefulWidget {
   PokeReaderScreen(this.doc, {Key? key}) : super(key: key);
@@ -13,14 +16,37 @@ class PokeReaderScreen extends StatefulWidget {
 class _PokeReaderScreenState extends State<PokeReaderScreen> {
   static User? user = FirebaseAuth.instance.currentUser;
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _typeController = TextEditingController();
+  String? _selectedType;
+  List<String> _pokemonTypes = [];
   bool isEditing = false;
 
   @override
   void initState() {
     super.initState();
     _nameController.text = widget.doc['name'];
-    _typeController.text = widget.doc['type'];
+    loadPokemonTypes(); // Carregar os tipos de Pokémon ao inicializar
+  }
+
+  // Função para carregar os tipos de Pokémon da PokeAPI
+  void loadPokemonTypes() async {
+    try {
+      // Substitua a URL pela URL correta da PokeAPI se necessário
+      final response =
+          await http.get(Uri.parse('https://pokeapi.co/api/v2/type'));
+      final data = json.decode(response.body);
+      final types = (data['results'] as List)
+          .map((type) => type['name'] as String)
+          .toList();
+      setState(() {
+        _pokemonTypes = types;
+        // Defina _selectedType como o valor atual do Firestore, caso esteja na lista de tipos disponíveis
+        if (_pokemonTypes.contains(widget.doc['type'])) {
+          _selectedType = widget.doc['type'];
+        }
+      });
+    } catch (error) {
+      print('Erro ao carregar os tipos de Pokémon: $error');
+    }
   }
 
   void _updatePokemon() async {
@@ -32,7 +58,7 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
           .doc(widget.doc.id)
           .update({
         'name': _nameController.text,
-        'type': _typeController.text,
+        'type': _selectedType,
       });
       Navigator.pop(context);
     } catch (error) {
@@ -49,14 +75,12 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
             ? TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(labelText: 'Name'),
-                textAlign:
-                    TextAlign.center, // Centralize o texto no campo de texto
+                textAlign: TextAlign.center,
               )
-            : Text('${_nameController.text}',
-                textAlign: TextAlign.center), // Centralize o texto no Text
+            : Text('${_nameController.text}', textAlign: TextAlign.center),
         backgroundColor: Colors.redAccent,
         elevation: 0,
-        centerTitle: true, // Centralize o título da AppBar
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(isEditing ? Icons.check : Icons.edit),
@@ -71,23 +95,29 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.center, // Centralize o conteúdo da coluna
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             isEditing
-                ? TextFormField(
-                    controller: _typeController,
-                    decoration: InputDecoration(labelText: 'Type'),
-                    textAlign: TextAlign
-                        .center, // Centralize o texto no campo de texto
+                ? DropdownButtonFormField<String>(
+                    value: _selectedType,
+                    items: _pokemonTypes.map((type) {
+                      return DropdownMenuItem<String>(
+                        value: type,
+                        child: Text(type),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedType = value;
+                      });
+                    },
                   )
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Tipo: ${_typeController.text}',
-                        textAlign:
-                            TextAlign.center, // Centralize o texto no Text
+                        'Tipo: $_selectedType',
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
