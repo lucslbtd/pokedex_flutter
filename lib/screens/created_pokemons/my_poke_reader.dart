@@ -1,4 +1,5 @@
 import "package:cloud_firestore/cloud_firestore.dart";
+import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 
 class PokeReaderScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class PokeReaderScreen extends StatefulWidget {
 }
 
 class _PokeReaderScreenState extends State<PokeReaderScreen> {
+  static User? user = FirebaseAuth.instance.currentUser;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _typeController = TextEditingController();
   bool isEditing = false;
@@ -24,9 +26,10 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
   void _updatePokemon() async {
     try {
       await FirebaseFirestore.instance
-          .collection('MyPokemons')
-          .doc(widget.doc
-              .id) // Use widget.doc.id para obter a referência do documento atual
+          .collection('users')
+          .doc(user!.uid)
+          .collection('mypokes')
+          .doc(widget.doc.id)
           .update({
         'name': _nameController.text,
         'type': _typeController.text,
@@ -46,10 +49,14 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
             ? TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(labelText: 'Name'),
+                textAlign:
+                    TextAlign.center, // Centralize o texto no campo de texto
               )
-            : Text('${_nameController.text}'),
+            : Text('${_nameController.text}',
+                textAlign: TextAlign.center), // Centralize o texto no Text
         backgroundColor: Colors.redAccent,
         elevation: 0,
+        centerTitle: true, // Centralize o título da AppBar
         actions: [
           IconButton(
             icon: Icon(isEditing ? Icons.check : Icons.edit),
@@ -64,21 +71,31 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment:
+              CrossAxisAlignment.center, // Centralize o conteúdo da coluna
           children: [
             isEditing
                 ? TextFormField(
                     controller: _typeController,
                     decoration: InputDecoration(labelText: 'Type'),
+                    textAlign: TextAlign
+                        .center, // Centralize o texto no campo de texto
                   )
-                : Text('Type: ${_typeController.text}'),
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Tipo: ${_typeController.text}',
+                        textAlign:
+                            TextAlign.center, // Centralize o texto no Text
+                      ),
+                    ],
+                  ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: isEditing
-            ? null
-            : _updatePokemon, // Desabilite o botão quando não estiver em edição
+        onPressed: isEditing ? null : _updatePokemon,
         child: Icon(Icons.save),
       ),
     );
