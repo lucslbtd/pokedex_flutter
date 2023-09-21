@@ -24,6 +24,7 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
   void initState() {
     super.initState();
     _nameController.text = widget.doc['name'];
+    _selectedType = widget.doc['type'];
     loadPokemonTypes(); // Carregar os tipos de Pokémon ao inicializar
   }
 
@@ -39,10 +40,6 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
           .toList();
       setState(() {
         _pokemonTypes = types;
-        // Defina _selectedType como o valor atual do Firestore, caso esteja na lista de tipos disponíveis
-        if (_pokemonTypes.contains(widget.doc['type'])) {
-          _selectedType = widget.doc['type'];
-        }
       });
     } catch (error) {
       print('Erro ao carregar os tipos de Pokémon: $error');

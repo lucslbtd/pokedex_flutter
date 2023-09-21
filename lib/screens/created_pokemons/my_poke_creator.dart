@@ -18,6 +18,7 @@ class PokeEditorScreen extends StatefulWidget {
 class _PokeEditorScreenState extends State<PokeEditorScreen> {
   User? user;
   TextEditingController _nameController = TextEditingController();
+  TextEditingController _imgController = TextEditingController();
   String? selectedType;
   List<String> pokemonTypes = [];
 
@@ -49,17 +50,32 @@ class _PokeEditorScreenState extends State<PokeEditorScreen> {
           children: [
             Center(
               child: Container(
-                width: 200, // Defina a largura desejada para o campo de texto
+                width: 200,
                 child: TextField(
                   controller: _nameController,
                   maxLength: 15,
-                  textAlign:
-                      TextAlign.center, // Centralize o texto no campo de texto
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     hintText: 'Nomeie o Pokémon',
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: Container(
+                width: 200,
+                child: TextField(
+                  controller: _imgController,
+                  maxLength: null,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    hintText: 'Cole uma URL da imagem do Pokémon',
                   ),
                 ),
               ),
@@ -91,7 +107,8 @@ class _PokeEditorScreenState extends State<PokeEditorScreen> {
                 .collection('mypokes')
                 .add({
               'name': _nameController.text,
-              'type': selectedType, // Usar o tipo selecionado aqui
+              'img': _imgController.text,
+              'type': selectedType,
             }).then((value) {
               print(value.id);
               Navigator.pop(context);
