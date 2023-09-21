@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'my_poke_widgets/my_poke_img.dart';
-
 class PokeReaderScreen extends StatefulWidget {
   PokeReaderScreen(this.doc, {Key? key}) : super(key: key);
   final QueryDocumentSnapshot doc;
@@ -27,16 +25,13 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
   void initState() {
     super.initState();
     _nameController.text = widget.doc['name'];
-    _imgController.text =
-        widget.doc['img']; // Preencha o TextField com o URL atual da imagem
+    _imgController.text = widget.doc['img'];
     _selectedType = widget.doc['type'];
-    loadPokemonTypes(); // Carregar os tipos de Pokémon ao inicializar
+    loadPokemonTypes();
   }
 
-  // Função para carregar os tipos de Pokémon da PokeAPI
   void loadPokemonTypes() async {
     try {
-      // Substitua a URL pela URL correta da PokeAPI se necessário
       final response =
           await http.get(Uri.parse('https://pokeapi.co/api/v2/type'));
       final data = json.decode(response.body);
@@ -60,8 +55,7 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
           .doc(widget.doc.id)
           .update({
         'name': _nameController.text,
-        'img': _imgController
-            .text, // Atualize o campo 'img' com o valor do TextField
+        'img': _imgController.text,
         'type': _selectedType,
       });
       Navigator.pop(context);
@@ -73,7 +67,7 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.redAccent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: isEditing
             ? TextFormField(
@@ -82,19 +76,9 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
                 textAlign: TextAlign.center,
               )
             : Text('${_nameController.text}', textAlign: TextAlign.center),
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(isEditing ? Icons.check : Icons.edit),
-            onPressed: () {
-              setState(() {
-                isEditing = !isEditing;
-              });
-            },
-          ),
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -109,9 +93,12 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
                         decoration: InputDecoration(labelText: 'Image URL'),
                         textAlign: TextAlign.center,
                       )
-                    : ImageDisplay(_imgController.text),
+                    : Image.network(
+                        _imgController.text,
+                        fit: BoxFit.cover,
+                      ),
                 Visibility(
-                  visible: !isEditing, // Ocultar quando estiver editando
+                  visible: !isEditing,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -139,13 +126,33 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
                       });
                     },
                   )
-                : SizedBox(), // Adicione um espaço vazio quando não estiver em edição
+                : SizedBox(),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: isEditing ? null : _updatePokemon,
-        child: Icon(Icons.save),
+      floatingActionButton: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: FloatingActionButton(
+              onPressed: isEditing ? null : _updatePokemon,
+              child: Icon(Icons.save),
+            ),
+          ),
+          Positioned(
+            bottom: 70,
+            right: 0,
+            child: FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  isEditing = !isEditing;
+                });
+              },
+              child: Icon(isEditing ? Icons.close : Icons.edit),
+            ),
+          ),
+        ],
       ),
     );
   }

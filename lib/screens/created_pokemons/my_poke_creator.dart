@@ -38,9 +38,9 @@ class _PokeEditorScreenState extends State<PokeEditorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text('Personalize um novo Pokémon'),
       ),
@@ -75,7 +75,7 @@ class _PokeEditorScreenState extends State<PokeEditorScreen> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    hintText: 'Cole uma URL da imagem do Pokémon',
+                    hintText: 'Cole a URL da imagem',
                   ),
                 ),
               ),
