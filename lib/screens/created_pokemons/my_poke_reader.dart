@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'my_poke_widgets/my_poke_img.dart';
+
 class PokeReaderScreen extends StatefulWidget {
   PokeReaderScreen(this.doc, {Key? key}) : super(key: key);
   final QueryDocumentSnapshot doc;
@@ -16,6 +18,7 @@ class PokeReaderScreen extends StatefulWidget {
 class _PokeReaderScreenState extends State<PokeReaderScreen> {
   static User? user = FirebaseAuth.instance.currentUser;
   TextEditingController _nameController = TextEditingController();
+  TextEditingController _imgController = TextEditingController();
   String? _selectedType;
   List<String> _pokemonTypes = [];
   bool isEditing = false;
@@ -24,6 +27,8 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
   void initState() {
     super.initState();
     _nameController.text = widget.doc['name'];
+    _imgController.text =
+        widget.doc['img']; // Preencha o TextField com o URL atual da imagem
     _selectedType = widget.doc['type'];
     loadPokemonTypes(); // Carregar os tipos de Pokémon ao inicializar
   }
@@ -55,6 +60,8 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
           .doc(widget.doc.id)
           .update({
         'name': _nameController.text,
+        'img': _imgController
+            .text, // Atualize o campo 'img' com o valor do TextField
         'type': _selectedType,
       });
       Navigator.pop(context);
@@ -94,6 +101,29 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Column(
+              children: [
+                isEditing
+                    ? TextFormField(
+                        controller: _imgController,
+                        decoration: InputDecoration(labelText: 'Image URL'),
+                        textAlign: TextAlign.center,
+                      )
+                    : ImageDisplay(_imgController.text),
+                Visibility(
+                  visible: !isEditing, // Ocultar quando estiver editando
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Tipo: $_selectedType',
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             isEditing
                 ? DropdownButtonFormField<String>(
                     value: _selectedType,
@@ -109,15 +139,7 @@ class _PokeReaderScreenState extends State<PokeReaderScreen> {
                       });
                     },
                   )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Tipo: $_selectedType',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                : SizedBox(), // Adicione um espaço vazio quando não estiver em edição
           ],
         ),
       ),

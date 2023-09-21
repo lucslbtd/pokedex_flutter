@@ -1,10 +1,8 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter/material.dart";
 import 'package:firebase_auth/firebase_auth.dart';
-
 import "my_poke_img.dart";
 
-// Defina uma função de retorno de chamada onDelete
 typedef void OnDelete();
 
 Widget mypokeCard(
@@ -34,7 +32,7 @@ Widget mypokeCard(
                         .collection('mypokes')
                         .doc(doc.id);
                     await docPoke.delete();
-                    onDelete(); // Chame a função de retorno de chamada após a exclusão
+                    onDelete();
                   }
                 },
               ),
